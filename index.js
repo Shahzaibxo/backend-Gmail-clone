@@ -11,4 +11,4 @@ app.use("/", routes)
 const PORT=8000;
 
 connection();
-app.listen(PORT, ()=>console.log('server is on port 8000'))
+app.listen(PORT, "0.0.0.0")

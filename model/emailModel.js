@@ -4,7 +4,7 @@ const Emailschema= new mongoose.Schema({
     to:{
         type: String,
         required: true
-    },
+    }, 
     from:{
         type: String,
         required: true
@@ -16,24 +16,23 @@ const Emailschema= new mongoose.Schema({
     },
     subject:{
         type: String,
-        required: true,
     },
     body:{
         type: String,
-        required: true,
+        
     },
     date:{
-        type: String,
+        type: Date,
         required: true,
         default:false
     },
     starred:{
-        type: String,
+        type: Boolean,
         required: true,
         default:false
     },
     bin:{
-        type: String,
+        type: Boolean,
         required: true,
         default: false
     },
@@ -41,7 +40,15 @@ const Emailschema= new mongoose.Schema({
         type: String,
         required: true
     },
-
+    checked:{
+        type: Boolean,
+        required: true,
+        
+    },
+    inbox:{
+        type: Boolean,
+        required: true,
+    }
 })
 
 const Email = mongoose.model("emails", Emailschema);
