@@ -30,23 +30,9 @@ const Emailschema= new mongoose.Schema({
         required: true,
         default:false
     },
-    bin:{
-        type: Boolean,
-        required: true,
-        default: false
-    },
     type:{
         type: String,
         required: true
-    },
-    checked:{
-        type: Boolean,
-        required: true,
-        
-    },
-    inbox:{
-        type: Boolean,
-        required: true,
     }
 })
 

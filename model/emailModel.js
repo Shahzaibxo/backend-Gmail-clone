@@ -27,8 +27,7 @@ const Emailschema= new mongoose.Schema({
         default:false
     },
     starred:{
-        type: Boolean,
-        required: true,
+        type:Boolean,
         default:false
     },
     bin:{
@@ -40,14 +39,10 @@ const Emailschema= new mongoose.Schema({
         type: String,
         required: true
     },
-    checked:{
-        type: Boolean,
-        required: true,
-        
-    },
     inbox:{
-        type: Boolean,
+        type:Boolean,
         required: true,
+        default:false
     }
 })
 
