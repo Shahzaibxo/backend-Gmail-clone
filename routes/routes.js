@@ -5,6 +5,9 @@ const routes = express.Router();
 routes.get('/',(req,res)=>{
     res.status(200).json("test-endpoint")
 })
+routes.get('/ok',(req,res)=>{
+    res.status(200).json("test-endpoint2")
+})
 routes.post('/saveEmail', saveSentEmails)
 routes.put('/starmark', Starmark)
 routes.put('/updatedraft', updatedraft)
