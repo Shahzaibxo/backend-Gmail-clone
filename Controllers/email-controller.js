@@ -11,6 +11,7 @@ export const saveSentEmails=(req,res)=>{
         res.status(500).json(error)
     }
 }
+
 export const Starmark=async(req,res)=>{
     try{       
           await EmailDBmodel.updateOne(
@@ -23,6 +24,34 @@ export const Starmark=async(req,res)=>{
         res.status(500).json(error)
     }
 }
+
+export const sentfromdraft=async(req,res)=>{
+    try{
+        await DraftDBmodel.deleteMany({_id:{$in:req.body.id}})
+        const email = new EmailDBmodel(req.body.payload);
+        email.save();
+        res.status(200).json("email sent successfully");
+    }
+    catch(error){
+        res.status(500).json(error)
+    }
+}
+export const updatedraft=async(req,res)=>{
+
+    try{
+        await DraftDBmodel.updateOne(
+            { _id: { $in: req.body.id } },
+            [{$set:{to:req.body.input,subject:req.body.sub,body:req.body.body}}]
+        );
+          res.status(200).json("Draft Updated")       
+    }
+    catch(error){
+        res.status(500).json(error)
+        console.log(error)
+    }   
+    }
+
+
 export const movetobin= async (req,res)=>{
     try {
         console.log(req.params.param)
@@ -54,7 +83,6 @@ export const saveDraft=(req,res)=>{
     } 
     catch (error) {
         res.status(500).json(error)
-
     }
 }
 
