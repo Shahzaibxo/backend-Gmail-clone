@@ -10,8 +10,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json({extended:true}));
 app.use("/", routes)
 
-const PORT=8000
+
 
 connection();
-app.listen(PORT, "0.0.0.0")
+app.listen(process.env.PORT, "0.0.0.0")
 export default app;
