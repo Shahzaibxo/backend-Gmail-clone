@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken"
 import 'dotenv/config'
 
 
-export default async function Authizatio(req,res,next){
+export default async function Authization(req,res,next){
     const {authorization}=req.headers;
     if(!authorization){
         return res.status(401).json({error:"Authorization Token Missing, Sign up first"})
