@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const Emailschema= new mongoose.Schema({
+const draftschema= new mongoose.Schema({
     to:{
         type: String,
     }, 
@@ -36,6 +36,6 @@ const Emailschema= new mongoose.Schema({
     }
 })
 
-const Draft = mongoose.model("Draft-Emails", Emailschema);
+const Draft = mongoose.model("Draft-Emails", draftschema);
 
 export default Draft

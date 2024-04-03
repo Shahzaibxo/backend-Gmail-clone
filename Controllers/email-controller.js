@@ -54,7 +54,6 @@ export const updatedraft=async(req,res)=>{
 
 export const movetobin= async (req,res)=>{
     try {
-        console.log(req.params.param)
         if(req.params.param==="inbox" || req.params.param==="starred" || req.params.param==="sent" ){
             await EmailDBmodel.updateMany({_id:{$in: req.body}},{$set:{inbox:false, type:"bin", starred:false}});
             res.status(200).json("email(s) deleted successfully");
@@ -87,25 +86,27 @@ export const saveDraft=(req,res)=>{
 }
 
 export const getEmails= async(request,response)=>{
+    console.log(request.params.type)
     try {
         let emails;
         if(request.params.type==="sent"){
-         emails=await EmailDBmodel.find({type:"sent"}).sort({ date: -1 });
+            emails=await EmailDBmodel.find({type:"sent",from:request.query.email}).sort({ date: -1 });
         }
         if(request.params.type==="all mail"){
-            emails=await EmailDBmodel.find({}).sort({ date: -1 });
+            emails=await EmailDBmodel.find({from:request.query.email}).sort({ date: -1 });
            }
         if(request.params.type==="draft"){
-        emails=await DraftDBmodel.find({type: "draft"}).sort({ date: -1 });
+        emails=await DraftDBmodel.find({type: "draft",from:request.query.email}).sort({ date: -1 });
         }
         if(request.params.type==="bin"){
-            emails=await EmailDBmodel.find({type: "bin"}).sort({ date: -1 });
+            emails=await EmailDBmodel.find({type: "bin",from:request.query.email}).sort({ date: -1 });
         }
         if(request.params.type==="starred"){
-            emails=await EmailDBmodel.find({starred:true}).sort({ date: -1 });
+            emails=await EmailDBmodel.find({starred:true,from:request.query.email}).sort({ date: -1 });
         }
         if(request.params.type==="inbox"){
-            emails=await EmailDBmodel.find({inbox:true}).sort({ date: -1 });
+            emails=await EmailDBmodel.find({inbox:true,from:request.query.email}).sort({ date: -1 });
+            console.log(request.query.email)
         }  
         response.status(200).json(emails)
     } catch (error) {
