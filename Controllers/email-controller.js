@@ -47,7 +47,6 @@ export const updatedraft=async(req,res)=>{
     }
     catch(error){
         res.status(500).json(error)
-        console.log(error)
     }   
     }
 
@@ -69,7 +68,6 @@ export const movetobin= async (req,res)=>{
     } 
     catch (error) {
         res.status(500).json(error)
-        console.log(error)
 
     }
 }
