@@ -86,7 +86,6 @@ export const saveDraft=(req,res)=>{
 }
 
 export const getEmails= async(request,response)=>{
-    console.log(request.params.type)
     try {
         let emails;
         if(request.params.type==="sent"){
@@ -106,7 +105,6 @@ export const getEmails= async(request,response)=>{
         }
         if(request.params.type==="inbox"){
             emails=await EmailDBmodel.find({inbox:true,from:request.query.email}).sort({ date: -1 });
-            console.log(request.query.email)
         }  
         response.status(200).json(emails)
     } catch (error) {
